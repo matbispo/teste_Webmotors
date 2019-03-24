@@ -7,10 +7,10 @@
 <h2>Criar Anuncio</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Anuncio</h4>
         <hr />
@@ -19,7 +19,7 @@
             @Html.LabelFor(model => model.marca, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(m=> m.marca, new SelectList(ViewBag.Marca, "ID", "Name"), String.Empty
-               ,new { htmlAttributes = new { @class = "form-control" } })
+               ,new { htmlAttributes = new {  @class = "form-control", @id = "modeloID"} })
                 @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -76,9 +76,73 @@
     @Html.ActionLink("Voltar", "Index")
 </div>
 
-@section Scripts {
+
+@section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
 
-
-    $
 }
+<script src="@Url.Content("~/Scripts/jquery-3.3.1.js")" type="text/javascript"></script>
+
+<script type="text/javascript" language="javascript">
+
+    //$(function () {
+
+    //    $('#modeloID').change(function () {
+    //        console.log("change");
+    //        var value = $(this).val();
+    //        alert(value);
+    //    });
+
+    //function getModels() {
+    //    console.log('aqui');
+
+    //    var url = "GetModelo";
+    //    //var id = $("#modeloID").val();
+    //    var id = 1;
+
+    //    console.log(id);
+
+
+    //    $.ajax({
+    //        type: 'GET',
+    //        cache: false,
+    //        url: url,
+    //        data: { id: id },
+    //        dataType: 'json',
+    //        complete: function (data) {
+
+    //            console.log(data);
+    //        }
+    //    })
+    //};
+
+    function preencherModelo(data) {
+        console.log('callback');
+        console.log(data);
+    }
+
+    $('#marca').change(function () {
+
+        var url = "GetModelo";
+
+        var id = $(this).val();
+
+
+        $.ajax({
+            type: 'GET',
+            cache: false,
+            url: url,
+            data: { id: id },
+            dataType: 'json',
+            complete: function (data) {
+
+                var modelo = JSON.parse(data.responseText);
+
+                console.log(modelo);
+
+            }
+        })
+
+    });
+
+</script>

@@ -21,7 +21,7 @@ namespace Webmotors.Application.Aplication
 
             try
             {
-                if (response.statusCode.Equals("200"))
+                if (response.statusCode.Equals("OK"))
                 {
                     versoes = JsonConvert.DeserializeObject<List<Versao>>(response.data);
                 }
@@ -46,7 +46,7 @@ namespace Webmotors.Application.Aplication
 
             try
             {
-                if (response.statusCode.Equals("200"))
+                if (response.statusCode.Equals("OK"))
                 {
                     versoes = response.data;
                 }

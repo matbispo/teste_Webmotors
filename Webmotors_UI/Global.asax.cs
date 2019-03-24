@@ -13,7 +13,7 @@ namespace Webmotors_UI
     {
         protected void Application_Start()
         {
-            //DependencyResolver.SetResolver(SimpleInjectorContainer.RegisterServices());
+            SimpleInjectorContainer.RegisterServices(); //DependencyResolver.SetResolver(
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

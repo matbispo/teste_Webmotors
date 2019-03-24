@@ -14,13 +14,13 @@ namespace Webmotors.Application.Aplication
 
         public IEnumerable<Modelo> GetModelos(string id)
         {
-            url = id;
+            url += id;
             var response = RequestWS.SendGetRequest(url);
             IEnumerable<Modelo> modelos;
 
             try
             {
-                if (response.statusCode.Equals("200"))
+                if (response.statusCode.Equals("OK"))
                 {
                     modelos = JsonConvert.DeserializeObject<List<Modelo>>(response.data);
                 }
@@ -40,12 +40,12 @@ namespace Webmotors.Application.Aplication
         public string GetModelosString(string id)
         {
             string modelos;
-            url = id;
+            url += id;
             var response = RequestWS.SendGetRequest(url);
 
             try
             {
-                if (response.statusCode.Equals("200"))
+                if (response.statusCode.Equals("OK"))
                 {
                     modelos = response.data;
                 }

@@ -36,6 +36,7 @@ namespace Webmotors_UI.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult Create(AnuncioModel anuncio)
         {
             if (ModelState.IsValid)
