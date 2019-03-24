@@ -20,7 +20,7 @@ namespace Webmotors.Application.Aplication
 
             try
             {
-                if (response.statusCode.Equals("200"))
+                if (response.statusCode.Equals("OK"))
                 {
                     marcas = JsonConvert.DeserializeObject<List<Marca>>(response.data);
                 }

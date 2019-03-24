@@ -12,12 +12,11 @@ namespace Webmotors.Application.Aplication
     {
         string url = "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Model?MakeID=";
 
-        IEnumerable<Modelo> modelos;
-
         public IEnumerable<Modelo> GetModelos(string id)
         {
             url = id;
             var response = RequestWS.SendGetRequest(url);
+            IEnumerable<Modelo> modelos;
 
             try
             {
@@ -33,6 +32,31 @@ namespace Webmotors.Application.Aplication
             catch (Exception e)
             {
                 modelos = new List<Modelo>();
+            }
+
+            return modelos;
+        }
+
+        public string GetModelosString(string id)
+        {
+            string modelos;
+            url = id;
+            var response = RequestWS.SendGetRequest(url);
+
+            try
+            {
+                if (response.statusCode.Equals("200"))
+                {
+                    modelos = response.data;
+                }
+                else
+                {
+                    modelos = "";
+                }
+            }
+            catch (Exception e)
+            {
+                modelos = "";
             }
 
             return modelos;

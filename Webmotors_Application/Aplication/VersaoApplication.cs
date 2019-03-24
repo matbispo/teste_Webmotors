@@ -11,11 +11,11 @@ namespace Webmotors.Application.Aplication
     public class VersaoApplication
     {
         string url = "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Version?ModelID=";
-
-        IEnumerable<Versao> versoes;
-
+      
         public IEnumerable<Versao> GetVersoes(string id)
         {
+            IEnumerable<Versao> versoes;
+
             url += id;
             var response = RequestWS.SendGetRequest(url);
 
@@ -33,6 +33,31 @@ namespace Webmotors.Application.Aplication
             catch (Exception e)
             {
                 versoes = new List<Versao>();
+            }
+
+            return versoes;
+        }
+
+        public string GetVersoesString(string id)
+        {
+            string versoes;
+            url += id;
+            var response = RequestWS.SendGetRequest(url);
+
+            try
+            {
+                if (response.statusCode.Equals("200"))
+                {
+                    versoes = response.data;
+                }
+                else
+                {
+                    versoes = "";
+                }
+            }
+            catch (Exception e)
+            {
+                versoes = "";
             }
 
             return versoes;

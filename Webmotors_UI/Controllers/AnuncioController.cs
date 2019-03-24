@@ -10,10 +10,15 @@ namespace Webmotors_UI.Controllers
 {
     public class AnuncioController : Controller
     {
-        MarcaApplication marcarApplication;
+        MarcaApplication marcaApplication;
+        ModeloApplication modeloApplication;
+        VersaoApplication versaoAplication;
+
         public AnuncioController()
         {
-            marcarApplication = new MarcaApplication();
+            marcaApplication = new MarcaApplication();
+            modeloApplication = new ModeloApplication();
+            versaoAplication = new VersaoApplication();
         }
         // GET: Anuncio
         public ActionResult Index()
@@ -27,8 +32,60 @@ namespace Webmotors_UI.Controllers
 
         public ActionResult Create()
         {
-            ViewData["Marcas"] = marcarApplication.GetMarcas();
+            ViewBag.Marca = marcaApplication.GetMarcas();
             return View();
+        }
+
+        public ActionResult Create(AnuncioModel anuncio)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            else
+            {
+
+            }
+            return View();
+        }
+
+        public ActionResult DeleteAnuncio(string id)
+        {
+            return View();
+        }
+
+        public ActionResult ConfirmDeleteAnuncio(string id)
+        {
+            return View();
+        }
+
+        public ActionResult DetailsAnuncio(string id) {
+
+
+            return View();
+        }
+
+        public ActionResult EditAnuncio(string id)
+        {
+            return View();
+        }
+        public ActionResult ConfirmEdition()
+        {
+            return View();
+        }
+
+        public string GetModelo(string id)
+        {
+            var modelos = modeloApplication.GetModelosString(id);
+
+            return modelos;
+        }
+
+        public string GetVersao(string id)
+        {
+            var versoes = versaoAplication.GetVersoesString(id);
+
+            return versoes;
         }
     }
 }
