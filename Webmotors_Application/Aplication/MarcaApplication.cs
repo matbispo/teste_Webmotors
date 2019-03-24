@@ -8,7 +8,7 @@ using Webmotors.Application.Model;
 
 namespace Webmotors.Application.Aplication
 {
-    class MarcaApplication
+    public class MarcaApplication
     {
         string url = "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Make";
 
