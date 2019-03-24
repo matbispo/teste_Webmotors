@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace Webmotors.Application.Aplication
 {
-    public class RequestWS
+    public static class RequestWS
     {
-        HttpWebRequest request;
-        HttpWebResponse response;
-        ResponseWS responseWs;
 
-        public ResponseWS SendGetRequest(string url)
+        public static ResponseWS SendGetRequest(string url)
         {
+            HttpWebRequest request;
+            HttpWebResponse response;
+            ResponseWS responseWs;
+
             responseWs = new ResponseWS();
 
             try
@@ -40,10 +41,7 @@ namespace Webmotors.Application.Aplication
                 }
                 else
                 {
-                    if (!url.Contains("commits"))
-                    {
-                        throw new Exception(response.StatusCode.ToString());
-                    }
+
                 }
             }
 
@@ -55,16 +53,9 @@ namespace Webmotors.Application.Aplication
                 responseWs.message = e.Message;
             }
 
-
             return responseWs;
         }
 
-        public ResponseWS SendPostRequest(string url)
-        {
-            // todo send parameter post
-            responseWs = new ResponseWS();
-            return responseWs;
-        }
     }
 }
 

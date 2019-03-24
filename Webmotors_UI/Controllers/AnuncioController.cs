@@ -12,8 +12,7 @@ namespace Webmotors_UI.Controllers
         // GET: Anuncio
         public ActionResult Index()
         {
-            RequestWS req = new RequestWS();
-            req.SendGetRequest("http://desafioonline.webmotors.com.br/api/OnlineChallenge/Make");
+
             return View();
         }
     }

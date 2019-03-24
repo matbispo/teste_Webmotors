@@ -8,33 +8,34 @@ using Webmotors.Application.Model;
 
 namespace Webmotors.Application.Aplication
 {
-    class MarcaApplication
+    public class ModeloApplication
     {
-        string url = "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Make";
+        string url = "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Model?MakeID=";
 
-        IEnumerable<Marca> marcas;
+        IEnumerable<Modelo> modelos;
 
-        public IEnumerable<Marca> GetMarcas() {
-
+        public IEnumerable<Modelo> GetModelos(string id)
+        {
+            url = id;
             var response = RequestWS.SendGetRequest(url);
 
             try
             {
                 if (response.statusCode.Equals("200"))
                 {
-                    marcas = JsonConvert.DeserializeObject<List<Marca>>(response.data);
+                    modelos = JsonConvert.DeserializeObject<List<Modelo>>(response.data);
                 }
                 else
                 {
-                    marcas = new List<Marca>();
+                    modelos = new List<Modelo>();
                 }
             }
             catch (Exception e)
             {
-                marcas = new List<Marca>();
+                modelos = new List<Modelo>();
             }
 
-            return marcas;
+            return modelos;
         }
 
     }
