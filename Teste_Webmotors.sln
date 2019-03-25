@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{2910D01F-8D87-4057-B781-24BC263307B8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{A8838654-9885-4CD6-9213-AD031AE07A81}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webmotors.Data", "Webmotors_Data\Webmotors.Data.csproj", "{AF59717E-507F-4BAF-9AF8-99E2BD334DEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webmotors.Ioc", "Webmotors_ioc\Webmotors.Ioc.csproj", "{004587D4-07FC-408E-A9B7-3AFFAB5646E5}"

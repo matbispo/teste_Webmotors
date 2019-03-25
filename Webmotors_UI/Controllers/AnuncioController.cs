@@ -12,17 +12,17 @@ namespace Webmotors_UI.Controllers
 {
     public class AnuncioController : Controller
     {
-        MarcaApplication marcaApplication;
-        ModeloApplication modeloApplication;
-        VersaoApplication versaoAplication;
+        private IMarcaApplication _marcaApplication;
+        private IModeloApplication _modeloApplication;
+        private IVersaoApplication _versaoAplication;
 
-        IAnuncioApplication _anuncioApplication;
+        private IAnuncioApplication _anuncioApplication;
 
         public AnuncioController()
         {
-            marcaApplication = new MarcaApplication();
-            modeloApplication = new ModeloApplication();
-            versaoAplication = new VersaoApplication();
+            _marcaApplication = SimpleInjectorContainer.Container.GetInstance<IMarcaApplication>();
+            _modeloApplication = SimpleInjectorContainer.Container.GetInstance<IModeloApplication>();
+            _versaoAplication = SimpleInjectorContainer.Container.GetInstance<IVersaoApplication>();
 
             _anuncioApplication = SimpleInjectorContainer.Container.GetInstance<IAnuncioApplication>();
         }
@@ -113,21 +113,21 @@ namespace Webmotors_UI.Controllers
 
         public string GetModelo(string id)
         {
-            var modelos = modeloApplication.GetModelosString(id);
+            var modelos = _modeloApplication.GetModelosString(id);
 
             return modelos;
         }
 
         public string GetVersao(string id)
         {
-            var versoes = versaoAplication.GetVersoesString(id);
+            var versoes = _versaoAplication.GetVersoesString(id);
 
             return versoes;
         }
 
         public string GetMarcas()
         {
-            return marcaApplication.GetMarcasString();
+            return _marcaApplication.GetMarcasString();
         }
     }
 }

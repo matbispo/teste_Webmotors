@@ -28,6 +28,10 @@ namespace Webmotors.ioc
             container.Register<IWebmotorsContext, WebmotorsContext>(Lifestyle.Singleton);
             container.Register<IAnuncioApplication, AnuncioApplication>();
 
+            container.Register< IVersaoApplication , VersaoApplication> ();
+            container.Register< IMarcaApplication , MarcaApplication> ();
+            container.Register< IModeloApplication , ModeloApplication> ();
+
             container.Verify();
             Container = container;
             return Container;

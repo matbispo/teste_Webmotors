@@ -17,8 +17,8 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.marca, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">           
-                <select id="marcaID" name="marca" class="form-control"></select>               
+            <div class="col-md-10">
+                <select id="marcaID" name="marca" class="form-control"></select>
                 @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -88,39 +88,39 @@
 
         var url = "GetMarcas";
 
-            $.ajax({
-                type: 'GET',
-                cache: false,
-                url: url,
-                dataType: 'json',
-                complete: function (data) {
+        $.ajax({
+            type: 'GET',
+            cache: false,
+            url: url,
+            dataType: 'json',
+            complete: function (data) {
 
-                    var marcas = JSON.parse(data.responseText);
+                var marcas = JSON.parse(data.responseText);
 
-                    var marcaElements = $("#marcaID");
+                var marcaElements = $("#marcaID");
+
+                var option = $("<option />");
+
+                option.html("Selecione");
+
+                option.attr('id', -1);
+
+                marcaElements.append(option);
+
+                $(marcas).each(function () {
 
                     var option = $("<option />");
 
-                    option.html("");
+                    option.html(this.Name);
 
-                    option.attr('id', -1);
+                    option.val(this.Name);
+
+                    option.attr('id', this.ID);
 
                     marcaElements.append(option);
-
-                    $(marcas).each(function () {
-
-                        var option = $("<option />");
-
-                        option.html(this.Name);
-
-                        option.val(this.Name);
-
-                        option.attr('id', this.ID);
-
-                        marcaElements.append(option);
-                    });
-                }
-            })
+                });
+            }
+        })
     });
 
     $('#marcaID').change(function () {
@@ -145,7 +145,7 @@
 
                     var option = $("<option />");
 
-                    option.html("");
+                    option.html("Selecione");
 
                     option.attr('id', -1);
 
@@ -154,7 +154,7 @@
                     $(modelos).each(function () {
 
                         var option = $("<option />");
-                        
+
                         option.html(this.Name);
 
                         option.val(this.Name);
@@ -179,38 +179,39 @@
 
         var id = $(this).children(":selected").attr("id");
 
-            $.ajax({
-                type: 'GET',
-                cache: false,
-                url: url,
-                data: { id: id },
-                dataType: 'json',
-                complete: function (data) {
-                    $('#versaoID').find('option').remove();
+        $.ajax({
+            type: 'GET',
+            cache: false,
+            url: url,
+            data: { id: id },
+            dataType: 'json',
+            complete: function (data) {
+                $('#versaoID').find('option').remove();
 
-                    var modelos = JSON.parse(data.responseText);
+                var versoes = JSON.parse(data.responseText);
 
-                    var versaoElements = $("#versaoID");
+                console.log(versoes);
+
+                var versaoElements = $("#versaoID");
+
+                var option = $("<option />");
+
+                option.html("Selecione");
+
+                versaoElements.append(option);
+
+                $(versoes).each(function () {
 
                     var option = $("<option />");
 
-                    option.html("");
+                    option.html(this.Name);
+
+                    option.val(this.Name);
 
                     versaoElements.append(option);
-
-                    $(modelos).each(function () {
-
-                        var option = $("<option />");
-
-                        option.html(this.Name);
-
-                        option.val(this.Name);
-
-                        versaoElements.append(option);
-                    });
-                }
-            })
-        
+                });
+            }
+        })
     });
 
 </script>

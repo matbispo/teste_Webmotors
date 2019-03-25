@@ -49,6 +49,9 @@
     <Compile Include="Aplication\AnuncioApplication.cs" />
     <Compile Include="Aplication\MarcaApplication.cs" />
     <Compile Include="Aplication\ModeloApplication.cs" />
+    <Compile Include="Interfaces\IMarcaApplication.cs" />
+    <Compile Include="Interfaces\IModeloApplication.cs" />
+    <Compile Include="Interfaces\IVersaoApplication.cs" />
     <Compile Include="Util\RequestWS.cs" />
     <Compile Include="Util\TransformObject.cs" />
     <Compile Include="Aplication\VersaoApplication.cs" />
