@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Webmotors.Data.Context;
 using Webmotors.Domain.Entities;
 using Webmotors.Domain.Interfaces.InterfaceRepository;
 

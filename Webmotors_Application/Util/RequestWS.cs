@@ -6,8 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Webmotors.Application.Aplication;
 
-namespace Webmotors.Application.Aplication
+namespace Webmotors.Application.Util
 {
     public static class RequestWS
     {

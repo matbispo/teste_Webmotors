@@ -171,6 +171,7 @@
     <Content Include="Views\Anuncio\Create.cshtml" />
     <Content Include="Views\Anuncio\Index.cshtml" />
     <Content Include="Views\Anuncio\DetailsAnuncio.cshtml" />
+    <Content Include="Views\Anuncio\EditAnuncio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,7 +36,6 @@ namespace Webmotors_UI.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Marca = marcaApplication.GetMarcas();
             return View();
         }
 
@@ -70,11 +69,6 @@ namespace Webmotors_UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ConfirmDeleteAnuncio(string id)
-        {
-            return View();
-        }
-
         public ActionResult DetailsAnuncio(string id) {
 
             var anuncio = _anuncioApplication.GetById(Convert.ToInt32(id));
@@ -83,12 +77,38 @@ namespace Webmotors_UI.Controllers
 
         public ActionResult EditAnuncio(string id)
         {
-            return View();
+            AnuncioModel anuncio;
+            try
+            {
+                anuncio = _anuncioApplication.GetById(Convert.ToInt32(id));
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+            return View(anuncio);
         }
         [HttpPost]
-        public ActionResult ConfirmEdition()
+        public ActionResult EditAnuncio(AnuncioModel anuncio)
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _anuncioApplication.EditAnuncio(anuncio);
+                }
+                else
+                {
+                    return View(anuncio);
+                }
+                return RedirectToAction("DetailsAnuncio", anuncio.ID);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
 
         public string GetModelo(string id)
