@@ -18,6 +18,7 @@ namespace Webmotors.Application.Interfaces
 
         bool CreateAnuncio(AnuncioModel anuncio);
 
-        Anuncio ModelEntity(AnuncioModel model);
+        AnuncioModel GetById(int id);
+
     }
 }

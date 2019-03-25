@@ -50,6 +50,7 @@
     <Compile Include="Aplication\MarcaApplication.cs" />
     <Compile Include="Aplication\ModeloApplication.cs" />
     <Compile Include="Aplication\RequestWS.cs" />
+    <Compile Include="Aplication\TransformObject.cs" />
     <Compile Include="Aplication\VersaoApplication.cs" />
     <Compile Include="Interfaces\IAnuncioApplication.cs" />
     <Compile Include="Model\AnuncioModel.cs" />

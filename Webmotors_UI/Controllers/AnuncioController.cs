@@ -43,20 +43,31 @@ namespace Webmotors_UI.Controllers
         [HttpPost]
         public ActionResult Create(AnuncioModel anuncio)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _anuncioApplication.CreateAnuncio(anuncio);
+                if (ModelState.IsValid)
+                {
+                    _anuncioApplication.CreateAnuncio(anuncio);
+                }
+                else
+                {
+                    return View(anuncio);
+                }
+
+                return RedirectToAction("Index");
             }
-            else
+            catch (Exception)
             {
 
+                return View();
             }
-            return View();
         }
 
         public ActionResult DeleteAnuncio(string id)
         {
-            return View();
+            _anuncioApplication.DeleteAnuncio(Convert.ToInt32(id));
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult ConfirmDeleteAnuncio(string id)
@@ -66,14 +77,15 @@ namespace Webmotors_UI.Controllers
 
         public ActionResult DetailsAnuncio(string id) {
 
-
-            return View();
+            var anuncio = _anuncioApplication.GetById(Convert.ToInt32(id));
+            return View(anuncio);
         }
 
         public ActionResult EditAnuncio(string id)
         {
             return View();
         }
+        [HttpPost]
         public ActionResult ConfirmEdition()
         {
             return View();

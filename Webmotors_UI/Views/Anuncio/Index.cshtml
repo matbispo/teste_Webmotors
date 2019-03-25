@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Webmotors.Domain.Entities.Anuncio>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "inicio";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Criar Anuncio", "Create")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.observacao)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalhes", "DetailsAnuncio", new { id=item.ID }) |
+            @Html.ActionLink("Excluir", "DeleteAnuncio", new { id=item.ID })
         </td>
     </tr>
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,21 +40,18 @@ namespace Webmotors.Application.Aplication
 
         public bool EditAnuncio(AnuncioModel anuncio)
         {
-            return _anuncioService.Update(ModelEntity(anuncio));
+            return _anuncioService.Update(TransformObject.ModelEntity<Anuncio>(anuncio));
         }
 
         public bool CreateAnuncio(AnuncioModel anuncio)
         {
-            return _anuncioService.Add(ModelEntity(anuncio));
+            return _anuncioService.Add(TransformObject.ModelEntity<Anuncio>(anuncio));
         }
 
-        public Anuncio ModelEntity(AnuncioModel model)
+        public AnuncioModel GetById(int id)
         {
-            Anuncio newAnuncio = new Anuncio();
-
-
-            
-            return newAnuncio;
+            var anuncio = TransformObject.ModelEntity<AnuncioModel>(_anuncioService.GetById(id));
+            return anuncio;
         }
     }
 }

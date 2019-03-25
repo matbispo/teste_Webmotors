@@ -16,13 +16,8 @@ namespace Webmotors.ioc
 {
     public static class SimpleInjectorContainer
     {
-        //static readonly Container container;
-        public static Container Container;
 
-        //static SimpleInjectorContainer()
-        //{
-        //    container = new Container();
-        //}
+        public static Container Container;
 
         public static Container RegisterServices()
         {
