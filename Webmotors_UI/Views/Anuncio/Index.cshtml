@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Webmotors.Domain.Entities.Anuncio>
 
 @{
-    ViewBag.Title = "inicio";
+                /**/
+
+                ViewBag.Title = "inicio";
 }
 
 <h2>Index</h2>
@@ -32,32 +34,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.marca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.versao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ano)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quilometragem)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.observacao)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditAnuncio", new { id=item.ID }) |
-            @Html.ActionLink("Detalhes", "DetailsAnuncio", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "DeleteAnuncio", new { id=item.ID })
-        </td>
-    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.modelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.versao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ano)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.quilometragem)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.observacao)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "EditAnuncio", new { id = item.ID }) |
+        @Html.ActionLink("Detalhes", "DetailsAnuncio", new { id = item.ID }) |
+        @Html.ActionLink("Excluir", "DeleteAnuncio", new { id = item.ID })
+    </td>
+</tr>
 }
 
 </table>
