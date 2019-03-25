@@ -51,9 +51,7 @@ namespace Webmotors.Application.Aplication
         {
             Anuncio newAnuncio = new Anuncio();
 
-            newAnuncio.ano = model.ano;
-            newAnuncio.observacao = model.descricao;
-            newAnuncio.quilometragem = model.kilometragem;
+
             
             return newAnuncio;
         }

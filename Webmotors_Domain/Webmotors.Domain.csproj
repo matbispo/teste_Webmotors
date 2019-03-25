@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Entities\Anuncio.cs" />
     <Compile Include="Interfaces\InterfaceRepository\IAnuncioRepository.cs" />
-    <Compile Include="Interfaces\InterfaceRepository\IWebmotorsContext.cs" />
     <Compile Include="Interfaces\InterfaceService\IAnuncioService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AnuncioService.cs" />

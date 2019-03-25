@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\IWebmotorsContext.cs" />
     <Compile Include="Context\WebmotorsContext.cs" />
     <Compile Include="mapping\AnuncioMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,9 +12,9 @@ namespace Webmotors.Application.Aplication
     {
         string url = "http://desafioonline.webmotors.com.br/api/OnlineChallenge/Make";
 
-        IEnumerable<Marca> marcas;
-
         public IEnumerable<Marca> GetMarcas() {
+
+            IEnumerable<Marca> marcas;
 
             var response = RequestWS.SendGetRequest(url);
 
@@ -37,5 +37,31 @@ namespace Webmotors.Application.Aplication
             return marcas;
         }
 
+        public string GetMarcasString()
+        {
+
+            string marcas;
+
+            var response = RequestWS.SendGetRequest(url);
+
+            try
+            {
+                if (response.statusCode.Equals("OK"))
+                {
+                    marcas = response.data;
+                }
+                else
+                {
+                    marcas = "";
+                }
+            }
+            catch (Exception e)
+            {
+                marcas = "";
+            }
+
+            return marcas;
+        }
     }
 }
+

@@ -17,8 +17,8 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.marca, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m=> m.marca, new SelectList(ViewBag.Marca, "ID", "Name"), String.Empty, new { @class = "form-control", @id = "marcaID"} )
+            <div class="col-md-10">           
+                <select id="marcaID" name="marca" class="form-control"></select>               
                 @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -48,18 +48,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.kilometragem, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.quilometragem, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.kilometragem, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.kilometragem, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.quilometragem, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.quilometragem, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.observacao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.observacao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.observacao, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,13 +84,52 @@
 
 <script type="text/javascript" language="javascript">
 
+    $(document).ready(function () {
+
+        var url = "GetMarcas";
+
+            $.ajax({
+                type: 'GET',
+                cache: false,
+                url: url,
+                dataType: 'json',
+                complete: function (data) {
+
+                    var marcas = JSON.parse(data.responseText);
+
+                    var marcaElements = $("#marcaID");
+
+                    var option = $("<option />");
+
+                    option.html("");
+
+                    option.attr('id', -1);
+
+                    marcaElements.append(option);
+
+                    $(marcas).each(function () {
+
+                        var option = $("<option />");
+
+                        option.html(this.Name);
+
+                        option.val(this.Name);
+
+                        option.attr('id', this.ID);
+
+                        marcaElements.append(option);
+                    });
+                }
+            })
+    });
+
     $('#marcaID').change(function () {
 
         var url = "GetModelo";
 
-        var id = $(this).val();
+        var id = $(this).children(":selected").attr("id");
 
-        if (id !== "") {
+        if (id !== "-1") {
             $.ajax({
                 type: 'GET',
                 cache: false,
@@ -108,7 +147,7 @@
 
                     option.html("");
 
-                    option.val(-1);
+                    option.attr('id', -1);
 
                     modeloElements.append(option);
 
@@ -118,7 +157,9 @@
                         
                         option.html(this.Name);
 
-                        option.val(this.ID);
+                        option.val(this.Name);
+
+                        option.attr('id', this.ID);
 
                         modeloElements.append(option);
                     });
@@ -136,9 +177,8 @@
 
         var url = "GetVersao";
 
-        var id = $(this).val();
+        var id = $(this).children(":selected").attr("id");
 
-        if (id !== -1) {
             $.ajax({
                 type: 'GET',
                 cache: false,
@@ -156,8 +196,6 @@
 
                     option.html("");
 
-                    option.val(-1);
-
                     versaoElements.append(option);
 
                     $(modelos).each(function () {
@@ -172,10 +210,7 @@
                     });
                 }
             })
-        }
-        else {
-            $('#versaoID').find('option').remove();
-        }
+        
     });
 
 </script>

@@ -23,7 +23,7 @@ namespace Webmotors_UI.Controllers
             marcaApplication = new MarcaApplication();
             modeloApplication = new ModeloApplication();
             versaoAplication = new VersaoApplication();
-            //_anuncioApplication = anuncioApplication;
+
             _anuncioApplication = SimpleInjectorContainer.Container.GetInstance<IAnuncioApplication>();
         }
 
@@ -45,7 +45,7 @@ namespace Webmotors_UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                //anuncioApplication.a
+                _anuncioApplication.CreateAnuncio(anuncio);
             }
             else
             {
@@ -91,6 +91,11 @@ namespace Webmotors_UI.Controllers
             var versoes = versaoAplication.GetVersoesString(id);
 
             return versoes;
+        }
+
+        public string GetMarcas()
+        {
+            return marcaApplication.GetMarcasString();
         }
     }
 }
