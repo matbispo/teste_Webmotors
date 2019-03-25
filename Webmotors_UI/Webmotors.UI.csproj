@@ -130,7 +130,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AnuncioController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,11 +168,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Anuncio\Index.cshtml" />
     <Content Include="Views\Anuncio\Create.cshtml" />
+    <Content Include="Views\Anuncio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -196,6 +192,10 @@
     <ProjectReference Include="..\Webmotors_Application\Webmotors.Application.csproj">
       <Project>{3af78a0f-9428-4cbf-9a32-53f64087cadc}</Project>
       <Name>Webmotors.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webmotors_Domain\Webmotors.Domain.csproj">
+      <Project>{15C691AB-F6D3-4E3B-9D76-15303FFFAE8E}</Project>
+      <Name>Webmotors.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Webmotors_ioc\Webmotors.Ioc.csproj">
       <Project>{004587D4-07FC-408E-A9B7-3AFFAB5646E5}</Project>

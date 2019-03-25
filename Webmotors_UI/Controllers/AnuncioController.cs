@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Webmotors.Application.Aplication;
+using Webmotors.Application.Interfaces;
 using Webmotors.Application.Model;
+using Webmotors.ioc;
 
 namespace Webmotors_UI.Controllers
 {
@@ -14,19 +16,21 @@ namespace Webmotors_UI.Controllers
         ModeloApplication modeloApplication;
         VersaoApplication versaoAplication;
 
+        IAnuncioApplication _anuncioApplication;
+
         public AnuncioController()
         {
             marcaApplication = new MarcaApplication();
             modeloApplication = new ModeloApplication();
             versaoAplication = new VersaoApplication();
+            //_anuncioApplication = anuncioApplication;
+            _anuncioApplication = SimpleInjectorContainer.Container.GetInstance<IAnuncioApplication>();
         }
+
         // GET: Anuncio
         public ActionResult Index()
         {
-            // listar todos os anuncios
-            // validar se o objeto nao esta vazio
-
-            var anuncios = new List<AnuncioModel>();
+            var anuncios = _anuncioApplication.listAnuncios();
             return View(anuncios);
         }
 
@@ -41,7 +45,7 @@ namespace Webmotors_UI.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                //anuncioApplication.a
             }
             else
             {

@@ -18,8 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.marca, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m=> m.marca, new SelectList(ViewBag.Marca, "ID", "Name"), String.Empty
-               ,new { htmlAttributes = new {  @class = "form-control", @id = "modeloID"} })
+                @Html.DropDownListFor(m=> m.marca, new SelectList(ViewBag.Marca, "ID", "Name"), String.Empty, new { @class = "form-control", @id = "marcaID"} )
                 @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.modelo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.modelo, new { htmlAttributes = new { @class = "form-control" } })
+                <select id="modeloID" name="modelo" class="form-control"></select>
                 @Html.ValidationMessageFor(model => model.modelo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.versao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.versao, new { htmlAttributes = new { @class = "form-control" } })
+                <select id="versaoID" name="versao" class="form-control"></select>
                 @Html.ValidationMessageFor(model => model.versao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -85,64 +84,98 @@
 
 <script type="text/javascript" language="javascript">
 
-    //$(function () {
-
-    //    $('#modeloID').change(function () {
-    //        console.log("change");
-    //        var value = $(this).val();
-    //        alert(value);
-    //    });
-
-    //function getModels() {
-    //    console.log('aqui');
-
-    //    var url = "GetModelo";
-    //    //var id = $("#modeloID").val();
-    //    var id = 1;
-
-    //    console.log(id);
-
-
-    //    $.ajax({
-    //        type: 'GET',
-    //        cache: false,
-    //        url: url,
-    //        data: { id: id },
-    //        dataType: 'json',
-    //        complete: function (data) {
-
-    //            console.log(data);
-    //        }
-    //    })
-    //};
-
-    function preencherModelo(data) {
-        console.log('callback');
-        console.log(data);
-    }
-
-    $('#marca').change(function () {
+    $('#marcaID').change(function () {
 
         var url = "GetModelo";
 
         var id = $(this).val();
 
+        if (id !== "") {
+            $.ajax({
+                type: 'GET',
+                cache: false,
+                url: url,
+                data: { id: id },
+                dataType: 'json',
+                complete: function (data) {
+                    $('#modeloID').find('option').remove();
 
-        $.ajax({
-            type: 'GET',
-            cache: false,
-            url: url,
-            data: { id: id },
-            dataType: 'json',
-            complete: function (data) {
+                    var modelos = JSON.parse(data.responseText);
 
-                var modelo = JSON.parse(data.responseText);
+                    var modeloElements = $("#modeloID");
 
-                console.log(modelo);
+                    var option = $("<option />");
 
-            }
-        })
+                    option.html("");
 
+                    option.val(-1);
+
+                    modeloElements.append(option);
+
+                    $(modelos).each(function () {
+
+                        var option = $("<option />");
+                        
+                        option.html(this.Name);
+
+                        option.val(this.ID);
+
+                        modeloElements.append(option);
+                    });
+                }
+            })
+        }
+        else {
+            $('#modeloID').find('option').remove();
+            $('#versaoID').find('option').remove();
+        }
+    });
+
+
+    $('#modeloID').change(function () {
+
+        var url = "GetVersao";
+
+        var id = $(this).val();
+
+        if (id !== -1) {
+            $.ajax({
+                type: 'GET',
+                cache: false,
+                url: url,
+                data: { id: id },
+                dataType: 'json',
+                complete: function (data) {
+                    $('#versaoID').find('option').remove();
+
+                    var modelos = JSON.parse(data.responseText);
+
+                    var versaoElements = $("#versaoID");
+
+                    var option = $("<option />");
+
+                    option.html("");
+
+                    option.val(-1);
+
+                    versaoElements.append(option);
+
+                    $(modelos).each(function () {
+
+                        var option = $("<option />");
+
+                        option.html(this.Name);
+
+                        option.val(this.ID);
+
+                        versaoElements.append(option);
+                    });
+                }
+            })
+        }
+        else {
+            $('#versaoID').find('option').remove();
+        }
     });
 
 </script>

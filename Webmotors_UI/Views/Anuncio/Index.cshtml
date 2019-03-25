@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Webmotors.Application.Model.AnuncioModel>
+﻿@model IEnumerable<Webmotors.Domain.Entities.Anuncio>
 
 @{
     ViewBag.Title = "Index";
@@ -24,10 +24,10 @@
             @Html.DisplayNameFor(model => model.ano)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.kilometragem)
+            @Html.DisplayNameFor(model => model.quilometragem)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descricao)
+            @Html.DisplayNameFor(model => model.observacao)
         </th>
         <th></th>
     </tr>
@@ -47,10 +47,10 @@
             @Html.DisplayFor(modelItem => item.ano)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.kilometragem)
+            @Html.DisplayFor(modelItem => item.quilometragem)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.descricao)
+            @Html.DisplayFor(modelItem => item.observacao)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

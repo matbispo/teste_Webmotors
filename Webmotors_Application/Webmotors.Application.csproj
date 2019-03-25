@@ -47,11 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aplication\AnuncioApplication.cs" />
-    <Compile Include="Aplication\ConvertObj.cs" />
     <Compile Include="Aplication\MarcaApplication.cs" />
     <Compile Include="Aplication\ModeloApplication.cs" />
     <Compile Include="Aplication\RequestWS.cs" />
     <Compile Include="Aplication\VersaoApplication.cs" />
+    <Compile Include="Interfaces\IAnuncioApplication.cs" />
     <Compile Include="Model\AnuncioModel.cs" />
     <Compile Include="Model\ResponseWS.cs" />
     <Compile Include="Model\Marca.cs" />
@@ -61,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Webmotors_Domain\Webmotors.Domain.csproj">
+      <Project>{15C691AB-F6D3-4E3B-9D76-15303FFFAE8E}</Project>
+      <Name>Webmotors.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

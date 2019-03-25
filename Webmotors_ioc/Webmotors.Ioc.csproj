@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="SimpleInjector, Version=4.5.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.4.5.1\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -48,6 +49,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Webmotors_Application\Webmotors.Application.csproj">
+      <Project>{3AF78A0F-9428-4CBF-9A32-53F64087CADC}</Project>
+      <Name>Webmotors.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Webmotors_Data\Webmotors.Data.csproj">
       <Project>{AF59717E-507F-4BAF-9AF8-99E2BD334DEA}</Project>
       <Name>Webmotors.Data</Name>

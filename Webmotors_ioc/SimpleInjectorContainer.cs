@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 using Webmotors.Data.Repositories;
 using Webmotors.Domain.Interfaces.InterfaceRepository;
 using SimpleInjector;
+using Webmotors.Domain.Interfaces.InterfaceService;
+using Webmotors.Domain.Services;
+using Webmotors.Data.Context;
+using Webmotors.Application.Interfaces;
+using Webmotors.Application.Aplication;
 
 namespace Webmotors.ioc
 {
@@ -23,7 +28,10 @@ namespace Webmotors.ioc
         {
             Container container = new Container();
 
-            container.Register<IAnuncioRepository, AnuncioRepository>(); //Lifestyle.Singleton
+            container.Register<IAnuncioRepository, AnuncioRepository>();
+            container.Register<IAnuncioService, AnuncioService>();
+            container.Register<IWebmotorsContext, WebmotorsContext>(Lifestyle.Singleton);
+            container.Register<IAnuncioApplication, AnuncioApplication>();
 
             container.Verify();
             Container = container;

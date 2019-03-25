@@ -9,6 +9,14 @@ namespace Webmotors.Domain.Interfaces.InterfaceRepository
 {
     public interface IAnuncioRepository
     {
-        bool Add(Anuncio anuncio);
+        IEnumerable<Anuncio> GetAll();
+
+        int Add(Anuncio anuncio);
+
+        int Delete(Anuncio anuncio);
+
+        int Update(Anuncio anuncio);
+
+        Anuncio GetById(int id);
     }
 }

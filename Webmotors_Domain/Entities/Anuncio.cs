@@ -9,7 +9,7 @@ namespace Webmotors.Domain.Entities
         public string modelo { get; set; }
         public string versao { get; set; }
         public int ano { get; set; }
-        public int kilometragem { get; set; }
-        public string descricao { get; set; }
+        public int quilometragem { get; set; }
+        public string observacao { get; set; }
     }
 }
