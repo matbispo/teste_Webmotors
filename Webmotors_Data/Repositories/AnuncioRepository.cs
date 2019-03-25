@@ -39,9 +39,18 @@ namespace Webmotors.Data.Repositories
             return _anuncio.Where(a => a.ID == id).FirstOrDefault();
         }
 
-            public int Update(Anuncio anuncio)
+        public int Update(Anuncio anuncio)
         {
-            _context.Entry(anuncio).State = EntityState.Modified;
+            Anuncio newAnuncio = GetById(anuncio.ID);
+
+            newAnuncio.marca = anuncio.marca;
+            newAnuncio.modelo = anuncio.modelo;
+            newAnuncio.ano = anuncio.ano;
+            newAnuncio.observacao = anuncio.observacao;
+            newAnuncio.quilometragem = anuncio.quilometragem;
+            newAnuncio.versao = anuncio.versao;
+
+            _context.Entry(newAnuncio).State = EntityState.Modified;           
             return _context.SaveChanges();
         }
     }

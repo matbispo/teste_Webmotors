@@ -103,9 +103,9 @@ namespace Webmotors_UI.Controllers
                 {
                     return View(anuncio);
                 }
-                return RedirectToAction("DetailsAnuncio", anuncio.ID);
+                return RedirectToAction("index");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View();
             }

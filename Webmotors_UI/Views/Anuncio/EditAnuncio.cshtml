@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>AnuncioModel</h4>
         <hr />
@@ -21,7 +21,7 @@
             @Html.LabelFor(model => model.marca, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.marca, new { @id = "idMarcaDefault" })
-                <select id="marcaID" name="marca" class="form-control"></select>
+                <select id="marcaID" name="marca" class="form-control" onchange="buscarModelos()"></select>
                 @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -30,7 +30,7 @@
             @Html.LabelFor(model => model.modelo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.HiddenFor(model => model.modelo, new { @id = "idModeloDefault" })
-                <select id="modeloID" name="modelo" class="form-control"></select>
+                <select id="modeloID" name="modelo" class="form-control" , onchange="buscarVersoes()"></select>
                 @Html.ValidationMessageFor(model => model.modelo, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -89,47 +89,88 @@
 <script type="text/javascript" language="javascript">
 
     $(document).ready(function () {
+        buscarMarcas();
 
+        iniciarModelos();
+
+        iniciarVersoes();
+    });
+
+    function iniciarModelos(){
+
+        var modeloDefault = $("#idModeloDefault").val();
+
+        var modeloElements = $("#modeloID");
+
+        var option = $("<option />");
+
+        option.html(modeloDefault);
+
+        option.val(modeloDefault);
+
+        modeloElements.append(option);
+    }
+
+    function iniciarVersoes() {
+
+        var versaoDefault = $("#idVersaoDefault").val();
+
+        var versaoElements = $("#versaoID");
+
+        var option = $("<option />");
+
+        option.html(versaoDefault);
+
+        option.val(versaoDefault);
+
+        versaoElements.append(option);
+    }
+
+    function buscarMarcas() {
         var marcaDefault = $("#idMarcaDefault").val();
 
         var url = "/Anuncio/GetMarcas/";
 
         $.ajax({
-                type: 'GET',
-                cache: false,
-                url: url,
-                dataType: 'json',
-                complete: function (data) {
+            type: 'GET',
+            cache: false,
+            url: url,
+            dataType: 'json',
+            complete: function (data) {
 
-                    var marcas = JSON.parse(data.responseText);
+                var marcas = JSON.parse(data.responseText);
 
-                    var marcaElements = $("#marcaID");
+                var marcaElements = $("#marcaID");
 
-                    $(marcas).each(function () {
+                $(marcas).each(function () {
 
-                        var option = $("<option />");
+                    var option = $("<option />");
 
-                        option.html(this.Name);
+                    option.html(this.Name);
 
-                        option.val(this.Name);
+                    option.val(this.Name);
 
-                        option.attr('id', this.ID);
+                    option.attr('id', this.ID);
 
-                        if (this.Name === marcaDefault) {
-                            option.attr('selected', 'selected');
-                        }
+                    if (this.Name === marcaDefault) {
+                        option.attr('selected', 'selected');
+                    }
 
-                        marcaElements.append(option);
-                    });
-                }
-            })
-    });
+                    marcaElements.append(option);
+                });
+            }
+        })
+    }
 
- /*   $('#marcaID').change(function () {
 
-        var url = "GetModelo";
+    /*   $('#marcaID').change(function () {*/
 
-        var id = $(this).children(":selected").attr("id");
+    function buscarModelos() {
+
+        var modeloDefault = $("#idModeloDefault").val();
+        var url = "/Anuncio/GetModelo/";
+
+        var id = $("#marcaID").children(":selected").attr("id");
 
         if (id !== "-1") {
             $.ajax({
@@ -145,14 +186,6 @@
 
                     var modeloElements = $("#modeloID");
 
-                    var option = $("<option />");
-
-                    option.html("");
-
-                    option.attr('id', -1);
-
-                    modeloElements.append(option);
-
                     $(modelos).each(function () {
 
                         var option = $("<option />");
@@ -163,6 +196,10 @@
 
                         option.attr('id', this.ID);
 
+                        if (this.Name === modeloDefault) {
+                            option.attr('selected', 'selected');
+                        }
+
                         modeloElements.append(option);
                     });
                 }
@@ -172,47 +209,44 @@
             $('#modeloID').find('option').remove();
             $('#versaoID').find('option').remove();
         }
-    });
+    }
 
+    function buscarVersoes() {
 
-    $('#modeloID').change(function () {
+        var versaoDefault = $("#idVersaoDefault").val();
+        var url = "/Anuncio/GetVersao/";
 
-        var url = "GetVersao";
+        var id = $("#modeloID").children(":selected").attr("id");
 
-        var id = $(this).children(":selected").attr("id");
+        $.ajax({
+            type: 'GET',
+            cache: false,
+            url: url,
+            data: { id: id },
+            dataType: 'json',
+            complete: function (data) {
+                $('#versaoID').find('option').remove();
 
-            $.ajax({
-                type: 'GET',
-                cache: false,
-                url: url,
-                data: { id: id },
-                dataType: 'json',
-                complete: function (data) {
-                    $('#versaoID').find('option').remove();
+                var versoes = JSON.parse(data.responseText);
 
-                    var modelos = JSON.parse(data.responseText);
+                var versaoElements = $("#versaoID");
 
-                    var versaoElements = $("#versaoID");
+                $(versoes).each(function () {
 
                     var option = $("<option />");
 
-                    option.html("");
+                    option.html(this.Name);
+
+                    option.val(this.ID);
+
+                    if (this.Name === versaoDefault) {
+                        option.attr('selected', 'selected');
+                    }
 
                     versaoElements.append(option);
-
-                    $(modelos).each(function () {
-
-                        var option = $("<option />");
-
-                        option.html(this.Name);
-
-                        option.val(this.ID);
-
-                        versaoElements.append(option);
-                    });
-                }
-            })
-
-    });*/
+                });
+            }
+        })
+    };
 
 </script>
